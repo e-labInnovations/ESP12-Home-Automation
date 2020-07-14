@@ -1,6 +1,6 @@
 # ESP12 Based Home Automation
 
-<img src="images/3D_Top.png">
+<img src="images/3D_Top.PNG">
 <img src="images/3D_Bottom.png">
 <img src="images/PCB_01.png">
 <img src="images/PCB_02.png">
