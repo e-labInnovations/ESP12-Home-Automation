@@ -4,6 +4,10 @@
 <img src="images/3D_Bottom.png">
 <img src="images/PCB_01.png">
 <img src="images/PCB_02.png">
+<img src="images/PCB_03.jpg">
+<img src="images/PCB_04.jpg">
+<img src="images/PCB_05.jpeg">
+<img src="images/PCB_06.jpeg">
 <img src="images/Schematic.png">
 
 ## Components
