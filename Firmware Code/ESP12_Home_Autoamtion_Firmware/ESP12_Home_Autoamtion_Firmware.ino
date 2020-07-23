@@ -1,5 +1,4 @@
 #include <ESP8266WiFi.h>
-#include <ESP8266mDNS.h>
 #include <ESPAsyncWebServer.h>
 #include <WebSocketsServer.h>
 #include <ArduinoJson.h>  //6.15.1
@@ -33,14 +32,11 @@ void setup() {
   digitalWrite(Load4, LOW);
   Serial.begin(115200);
 
+  WiFi.mode(WIFI_AP);
   WiFi.softAP(ssid, password);
   Serial.println("");
   Serial.print("SoftAP IP:   ");
   Serial.println(WiFi.softAPIP());
-
-  if (MDNS.begin("ESP")) { //esp.local/
-    Serial.println("MDNS responder started");
-  }
 
   server.on("/", HTTP_GET, [](AsyncWebServerRequest * request) {
     request->send_P(200, "text/html", webpage);

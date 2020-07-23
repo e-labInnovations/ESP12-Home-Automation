@@ -41,7 +41,7 @@ char webpage[] PROGMEM = R"=====(
   </label>
 
 <script>
-  var connection = new WebSocket('ws://'+location.hostname+':81/');
+  var socket = new WebSocket('ws://'+location.hostname+':81/');
   var device1 = document.getElementById("device1");
   var device2 = document.getElementById("device2");
   var device3 = document.getElementById("device3");
@@ -52,12 +52,20 @@ char webpage[] PROGMEM = R"=====(
   var load3Status = false;
   var load4Status = false;
   
-  connection.onmessage = function(event){
+  socket.onmessage = function(event){
     var full_data = event.data;
     console.log(full_data);
     var data = JSON.parse(full_data);
     updateComp(data);
   }
+  socket.onclose = function () {
+    // websocket is closed.
+    alert('Connection closed...');
+  };
+  socket.onerror = function (event) {
+    alert('WebSocket error observed:', event.data);
+    console.error('WebSocket error observed:', event);
+  };
 
   function toggleCheckbox(device, status) {
     load1Status = device==1?(!status):load1Status;
@@ -71,7 +79,7 @@ char webpage[] PROGMEM = R"=====(
       "Load3" : load3Status?"HIGH":"LOW",
       "Load4" : load4Status?"HIGH":"LOW"
     }
-    connection.send(JSON.stringify(reqObj));
+    socket.send(JSON.stringify(reqObj));
   };
   
   function updateComp(res) {
